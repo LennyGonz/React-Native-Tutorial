@@ -1,0 +1,153 @@
+The absolute basics, which is to attempt to get some content on the screen of our mobile device.
+
+**** whenever we want to place some content on the screen in any type of app we build ****
+****               We are always going to do so by creating A COMPONENT               ****
+
+****                         A COMPONENT IS A WIDGET OF SORTS                         ****
+****    Widget is a thing  that produces some text or shape or an image that can be   ****
+****    rendered onto the screen of our mobile device, the apps that we build are     ****
+****        going to be composed by collections of these different components         ****
+
+
+First step is going inside the index.js file to create a component and render it onto the screen of our mobile device
+
+======================================================================================================================
+3 steps we start off with inside index.js
+
+1) Import a library to help create a component
+
+2) Create a component
+
+3) Render it to the device
+
+notes for step 1:
+// These libraries will help us make components. Components are intelligent objects that a lot of inner workings associated with them
+
+// **** SO WE DON'T WANT TO HAVE TO IMPLEMENT THESE LIBRARIES EVERY TIME WE MAKE A COMPONENT ****
+// **** SO we use a few functions provided by react native to make the process of generating a new component much easier
+
+// The act of just creating a component doesn't actually do anything
+// We have to specifically tell React-Native to take the component we just created and place it onto the screen
+// We'll have to build several different components along the way, AND we always to be very specific in telling our device exactly when to display each of these different components to our users
+
+** DIFFERENCE IN THE LIBRARIES:
+              REACT                          VS                      REACT NATIVE
+*Knows how a component should behave         || Knows how to take the output from a component and place it on a screen
+
+*Knows how to take a bunch of components     || Provides defailt core components (images, text)
+ and make them work together
+
+-------------------------------------------------------------------------------------------------------------------------
+- When we work with the react native application we are interfacing with two separate distinct libraries created by the
+react, react-native team. 
+
+- Each has its own distinct job, the react library contains a bunch of code that describes how a component should behave
+  such as what functions it should have
+- And also knows how to deal with a big pile of components, i.e) making multiple components work together
+
+- Since our apps are going to consist of dozens of different components, something needs to know how to take all these
+  different components and make them work together. This is the job of the react-library
+
+****** REACT-NATIVE LIBRARY
+
+** The react native library can be thought of as our portal to the mobile device, it gives us a handle on the mobile device
+   that we're running on it knows how to take output from a component and make it appear on a mobile device.
+
+** React Native also provides us with a couple primitive components that we can use to show simple text or simple images
+
+
+
+notes for step 2:
+*REMEMBER component is simply a *thing* that produces some content that's going to appear on the mobile device
+
+***************************************************************************************************************************
+IMPORT STATEMENTS
+
+Import statements like the two we used in index.js, 
+
+ES6 code that we write, each file can be thought of as having its own little separate compartment or cell by default
+no file gets access to any global variables or anything like that
+THE ONLY WAY TO GET ACCESS TO GLOBAL VARIABLES IS:
+by importing libraries into a file, can we reach out to other files and work with code that exists elsewhere in our project
+
+** So with that in mind the two import statements that we have in index.js, makes a little more sense.
+
+ ***************************************************************************************************************************
+
+ React's library has a tiny API, there's not a lot of ways to work with it, so once you learn those ways you can make some
+ pretty awesome apps without worrying about a whole bunch of complexity
+
+***************************************************************************************************************************
+*********************************************************** JSX ***********************************************************
+***************************************************************************************************************************
+
+JSX is literally just to make our lives easier, for example:
+
+This is JSX:                | This is compiled JavaScript
+<Text>                      |"use strict";
+  <Text> Some text </Text>  |React.createElement
+  <Text> Some text </Text>  |Text,
+  <Text> Some text </Text>  |null,
+  <Text> Some text </Text>  |React.createElement(
+</Text>                     | Text,
+                            | null,
+                            | "Some Text",
+                            | ),
+                            |React.createElement(
+                            |    Text,
+                            |    null,
+                            |    " Some text "
+                            |  ),
+                            |React.createElement(
+                            |    Text,
+                            |    null,
+                            |    " Some text "
+                            |  ),
+                            |React.createElement(
+                            |    Text,
+                            |    null,
+                            |    " Some text "
+                            |  )
+                            |);
+
+* JSX is just a mask over normal function calls, each time we did <Text> </Text>, in compiled JS we get React.createElement
+
+* JSX is much simpler, and when the code gets more complex JSX allows you to keep track of the logic, especially nested functions
+
+* BETTER definition for component, It is a JavaScript Function that returns some amount of JSX
+* JSX is a dialect of javascript that tells react native what content we want to show on the screen
+
+* In this case we created a text tag and inside that text tag we placed just a string "some text"
+
+
+*******
+Step 3:
+*******
+We're going to render the simple string to the screen of our mobile device
+
+// *In any react native app that we create we have to at least register one component to the applicaton*
+// Which is what we did, the first argument is a string that must match with our project name
+// The second argument we passed a function that returns the first component to render for our application
+
+ReactNative.AppRegistry.registerComponent('monica', () => App);
+
+
+
+* so we're going to have 5 components, a header, cardsection, card, cardsection, cardsection
+
+* As a reminder a component is a function that reutns some amount of JSX and JSX is what tells react native what content we want to show on the screen whenever we build a react application
+
+* Whenever working on a react application, we attempt to make components that are generally as resuable as possible so we can write one component 
+  and then use it in several different locations throughout or app, Its all about reuse of code for this application
+
+We're going to start off by making a single component called THE HEAD or component whose sole purpose is going to be to sit at the top of the application
+and show the text: "ALBUMS"
+
+We know how to display text, so the challenge is more styling!
+
+******************************************
+In react-native we do 1 component per file
+******************************************
+
+So inside out index.js file we already have 1 component, so we need to make a new file!
+We're going to organize our files, so all the source code will be inside the *src folder*
